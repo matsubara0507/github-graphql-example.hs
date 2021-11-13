@@ -13,16 +13,13 @@ description:         Please see the README on GitHub at <https://github.com/mats
 
 dependencies:
 - base >= 4.7 && < 5
+- bytestring
+- morpheus-graphql-client
+- req
+- text
 
 library:
   source-dirs: src
-
-executables:
-  github-graphql-example-exe:
-    main:                Main.hs
-    source-dirs:         app
-    dependencies:
-    - github-graphql-example
 
 tests:
   github-graphql-example-test:

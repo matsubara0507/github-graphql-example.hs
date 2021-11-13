@@ -4,4 +4,7 @@ resolver:
 packages:
 - .
 
-# extra-deps: []
+extra-deps:
+- morpheus-graphql-client-0.18.0
+- morpheus-graphql-code-gen-0.18.0
+- morpheus-graphql-core-0.18.0
