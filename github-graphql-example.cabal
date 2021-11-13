@@ -1,0 +1,57 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           github-graphql-example
+version:        0.1.0
+description:    Please see the README on GitHub at <https://github.com/matsubara0507/github-graphql-example.hs#readme>
+homepage:       https://github.com/matsubara0507/github-graphql-example.hs#readme
+bug-reports:    https://github.com/matsubara0507/github-graphql-example.hs/issues
+author:         MATSUBARA Nobutada
+maintainer:     example@example.com
+copyright:      2021 MATSUBARA Nobutada
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/matsubara0507/github-graphql-example.hs
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_github_graphql_example
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable github-graphql-example-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_github_graphql_example
+  hs-source-dirs:
+      app
+  build-depends:
+      base >=4.7 && <5
+    , github-graphql-example
+  default-language: Haskell2010
+
+test-suite github-graphql-example-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_github_graphql_example
+  hs-source-dirs:
+      test
+  build-depends:
+      base >=4.7 && <5
+    , github-graphql-example
+  default-language: Haskell2010

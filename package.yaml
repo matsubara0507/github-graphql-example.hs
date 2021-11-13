@@ -1,0 +1,32 @@
+name:                github-graphql-example
+version:             0.1.0
+github:              "matsubara0507/github-graphql-example.hs"
+license:             BSD3
+author:              "MATSUBARA Nobutada"
+maintainer:          "example@example.com"
+copyright:           "2021 MATSUBARA Nobutada"
+
+extra-source-files:
+- README.md
+
+description:         Please see the README on GitHub at <https://github.com/matsubara0507/github-graphql-example.hs#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  github-graphql-example-exe:
+    main:                Main.hs
+    source-dirs:         app
+    dependencies:
+    - github-graphql-example
+
+tests:
+  github-graphql-example-test:
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - github-graphql-example
