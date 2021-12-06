@@ -1,10 +1,14 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE RecordWildCards   #-}
+{-# LANGUAGE DataKinds           #-}
+{-# LANGUAGE FlexibleContexts    #-}
+{-# LANGUAGE OverloadedRecordDot #-}
+{-# LANGUAGE OverloadedStrings   #-}
+{-# LANGUAGE RecordWildCards     #-}
 
 module Repository where
 
 import           Data.Maybe (fromMaybe)
 import           Data.Text  (Text)
+import           GHC.Records
 import qualified Query
 
 data RepositoryInfo = RepositoryInfo
@@ -17,8 +21,8 @@ newtype Commit = Commit [TreeEntry] deriving (Eq, Show)
 
 type TreeEntry = Query.SearchEdgesNodeObjectTreeEntriesTreeEntry
 
-isBlob :: TreeEntry -> Bool
-isBlob (Query.SearchEdgesNodeObjectTreeEntriesTreeEntry _ ty) = ty == "blob"
+isBlob :: (HasField "name" r Text, HasField "type'" r Text) => r -> Bool
+isBlob entry = entry.type' == "blob"
 
 toRepositoryInfo :: Query.SearchEdgesSearchResultItemEdge -> Maybe RepositoryInfo
 toRepositoryInfo (Query.SearchEdgesSearchResultItemEdge (Just (Query.SearchEdgesNodeRepository _ nameWithOwner name obj))) =

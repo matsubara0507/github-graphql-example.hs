@@ -33,3 +33,14 @@ searchRepository tok query = go [] (Query.SearchPageInfoPageInfo Nothing True)
         Right (Query.SearchRepository (Query.SearchSearchResultItemConnection _ next edges)) ->
           let repos = maybe [] (mapMaybe toRepositoryInfo . catMaybes) edges in
           go (repos ++ xs) next
+
+fetchRepositoryTreeEntries :: ByteString -> Text -> Text -> IO (Either String [Query.RepositoryObjectTreeEntriesTreeEntry])
+fetchRepositoryTreeEntries tok owner name = do
+  result <- fetch (resolver tok) Query.GetReositoryArgs{..}
+  case result of
+    Left e ->
+      pure $ Left (show e)
+    Right (Query.GetReository (Just (Query.RepositoryRepository (Just (Query.RepositoryObjectCommit _ (Query.RepositoryObjectTreeTree (Just entries))))))) ->
+      pure $ Right entries
+    _ ->
+      pure $ Right []

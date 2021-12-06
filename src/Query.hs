@@ -33,3 +33,14 @@ defineByDocumentFile "./assets/schema.docs.graphql"
       }
     }
   |]
+
+defineByDocumentFile "./assets/schema.docs.graphql"
+  [gql|
+    query GetReository($owner: String!, $name: String!) {
+      repository(owner: $owner, name: $name) {
+        object(expression: "HEAD") {
+          ... on Commit { __typename, tree { entries { name, type } } }
+        }
+      }
+    }
+  |]
